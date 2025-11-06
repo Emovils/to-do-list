@@ -1,3 +1,24 @@
+# Next.js To-Do App
+
+This is a simple Next.js application that includes a login page, signup page, and a to-do list page. The project is built using TypeScript, Tailwind CSS, and Next.js App Rout
+
+ Features
+
+- User login and signup pages  
+- To-do list page with logout button  
+- Responsive design  
+- Placeholder API integration with the following fields:
+  - `title`
+  - `description`
+  - `is_completed`
+  - `category`
+  - `created_at`
+- Clean and minimal UI with Tailwind CSS
+
+---
+
+## Project Structure
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
