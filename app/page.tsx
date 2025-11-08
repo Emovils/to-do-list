@@ -2,20 +2,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation"; // ✅ import this
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fadeIn, setFadeIn] = useState(false);
+  const router = useRouter(); // ✅ initialize router
 
   useEffect(() => {
-    // Trigger fade-in animation on mount
     setFadeIn(true);
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     console.log("Logging in with:", { email, password });
+
+    // ✅ Redirect to the To-Do page after form submission
+    router.push("/todo");
   };
 
   return (
@@ -26,11 +31,11 @@ export default function Home() {
           fadeIn ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
         }`}
       >
-        <h1 className="text-5xl font-bold text-sky-600 mb-6">Welcome Back 👋</h1>
+        <h1 className="text-3xl font-bold text-sky-600 mb-6">Welcome Back 👋</h1>
 
         <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
           <div>
-            <label className="block text-gray-600 text-sm font-semibold mb-2">
+            <label className="block text-black-600 text-sm font-semibold mb-2">
               Email
             </label>
             <input
@@ -44,7 +49,7 @@ export default function Home() {
           </div>
 
           <div>
-            <label className="block text-gray-600 text-sm font-semibold mb-2">
+            <label className="block text-black-600 text-sm font-semibold mb-2">
               Password
             </label>
             <input
@@ -64,7 +69,6 @@ export default function Home() {
             Log In
           </button>
 
-          {/* Signup link */}
           <p className="text-sm text-center mt-4 text-gray-600">
             Don’t have an account?{" "}
             <Link

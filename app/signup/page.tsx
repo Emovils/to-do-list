@@ -3,8 +3,11 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // ✅ import router
 
 export default function SignupPage() {
+  const router = useRouter(); // ✅ initialize router
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,18 +21,23 @@ export default function SignupPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
+
     console.log("User signed up with:", formData);
+
+    // ✅ Redirect to Login page after signup
+    router.push("/");
   };
 
   return (
     <div className="flex min-h-screen font-sans bg-gradient-to-tr from-sky-100 to-blue-200">
       {/* Left side - Signup form */}
       <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-white/70 backdrop-blur-sm p-10 rounded-r-3xl shadow-2xl">
-        <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent mb-6">
+        <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent mb-6">
           Create Account
         </h1>
 
