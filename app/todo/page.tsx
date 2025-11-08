@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type Task = {
   id: number;
@@ -14,12 +15,9 @@ type Task = {
 
 export default function DashboardPage() {
   const router = useRouter();
-
-  // Placeholder data simulating API
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    // Simulate fetching API data
     const placeholderData: Task[] = [
       {
         id: 1,
@@ -58,7 +56,6 @@ export default function DashboardPage() {
   }, []);
 
   const handleLogout = () => {
-    // Simulate clearing session/token
     console.log("User logged out");
     router.push("/");
   };
@@ -79,19 +76,31 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-      {/* Top bar */}
-      <header className="flex items-center justify-between bg-white p-4 shadow-md">
-        <h1 className="text-2xl font-bold text-sky-700">My Project Dashboard</h1>
-        <button
-          onClick={handleLogout}
-          className="px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition"
-        >
-          Logout
-        </button>
-      </header>
+      {/* Hero Header with Background Image */}
+      <div className="relative h-48 md:h-56 rounded-b-3xl overflow-hidden shadow-md">
+        <Image
+          src="/todo list.png" // ✅ Your background image
+          alt="Todo list background"
+          layout="fill"
+          objectFit="cover"
+          className="brightness-75"
+          priority
+        />
+        <div className="absolute inset-0 flex items-center justify-between px-6 md:px-10">
+          <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-md">
+            My Project
+          </h1>
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 bg-white/80 text-sky-700 font-semibold rounded-lg hover:bg-white transition"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
 
-      {/* Content */}
-      <main className="p-6">
+      {/* Content Section */}
+      <main className="p-6 md:p-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {Object.entries(groupedTasks).map(([category, items]) => (
             <div key={category} className="bg-white rounded-xl shadow p-4">
